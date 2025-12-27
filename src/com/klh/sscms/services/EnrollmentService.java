@@ -5,6 +5,8 @@ import com.klh.sscms.exceptions.StudentNotFoundException;
 import com.klh.sscms.core.Enrollment;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Iterator;
+
 
 public class EnrollmentService {
 
@@ -35,6 +37,8 @@ public class EnrollmentService {
         }
         return null;
     }
+   
+
 
     public List<Student> getStudentsList() {
         return students;
@@ -104,5 +108,19 @@ public Student findByIdOrThrow(String id) throws StudentNotFoundException {
 
     public List<Enrollment> getEnrollmentRecords() {
         return records;
+  
+  
     }
+
+    public void removeStudent(String studentId) {
+    java.util.Iterator<Student> it = students.iterator();
+    while (it.hasNext()) {
+        Student s = it.next();
+        if (s.getId().equals(studentId)) {
+            it.remove();
+            return;
+        }
+    }
+}
+
 }
